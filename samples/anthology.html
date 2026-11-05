@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sample anthology</title>
+    <meta name="author" content="Editor Not On A Page" />
+  </head>
+  <body>
+    <p class="author">Preamble Author</p>
+
+    <div class="t i">Page 1</div>
+    <article>
+      <h1>Notes on the Engine</h1>
+      <p>
+        <span class="author">Ada Lovelace</span>
+        and
+        <a class="author" href="/hopper">Grace Hopper</a>
+        revised an earlier note by
+        <span class="author">Ada Lovelace</span>.
+      </p>
+    </article>
+
+    <div class="i t section">Page 2</div>
+    <p class="byline">By Grace Hopper</p>
+
+    <div class="t i">Page 3</div>
+    <p><a rel="author" href="/turing">Alan Turing</a></p>
+    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+      <span itemprop="name">Edsger Dijkstra</span>
+      <span class="email">edsger@example.com</span>
+    </div>
+
+    <div class="t i">Page 4</div>
+    <p>This page has no byline.</p>
+
+    <div class="t i"><span>Page 5</span></div>
+    <span class="author" data-name="Katherine Johnson">Kathy</span>
+    <meta itemprop="author" content="Margaret Hamilton" />
+  </body>
+</html>

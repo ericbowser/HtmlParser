@@ -1,0 +1,21 @@
+{
+  "name": "html-parser",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Split an HTML document on page markers and list the unique author names on each page.",
+  "exports": "./parsehtml.js",
+  "bin": {
+    "parse-authors": "./parsehtml.js"
+  },
+  "scripts": {
+    "parse": "node parsehtml.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "linkedom": "^0.18.12"
+  }
+}
