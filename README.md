@@ -2,7 +2,7 @@
 
 JavaScript tool that reads an HTML document, splits it into pages, and lists the unique authors on each page. The parser, the report formatter, and the command-line runner are all in `parsehtml.js`.
 
-Requires Node.js 18 or newer. The only dependency is [linkedom](https://github.com/WebReflection/linkedom), which supplies a DOM so the file is walked as HTML instead of matched with regular expressions.
+Requires Node.js 18 or newer. The only dependency is [htmlparser2](https://github.com/fb55/htmlparser2). The command streams the file, so a large document does not have to fit in one string.
 
 ## Run
 
@@ -11,19 +11,16 @@ npm install
 node parsehtml.js document.html
 ```
 
-That prints a report:
+The first argument is the HTML file. The report is written in the current directory, named from that file: `document.html` produces `document.txt`. A second argument chooses the output path.
 
-```text
-Page Number: 1
-Author: Sarah Johnson (Machine Learning Engineer)
-Author: Olivia Moore (Developer)
-
-Page Number: 2
-Author: Jacky Johnson (Engineer)
-Author: Sophia Moore (Tester)
+```bash
+node parsehtml.js document.html report.txt
+node parsehtml.js huge_chat_export.html
 ```
 
-`--json` prints the same result as data. Each `authors` entry is `Name` or `Name (Role)`.
+A path that is a directory is read from the same-named file inside it. `huge_chat_export.html` is the folder that contains `huge_chat_export.html/huge_chat_export.html`, and that command writes `huge_chat_export.txt`.
+
+`--json` writes the same pages as data, to `document.json` unless you pass an output path. Each `authors` entry is `Name` or `Name (Role)`.
 
 ```bash
 node parsehtml.js document.html --json
@@ -34,81 +31,78 @@ node parsehtml.js document.html --json
   {
     "page": 1,
     "authors": [
-      "Sarah Johnson (Machine Learning Engineer)",
-      "Olivia Moore (Developer)"
+      "Dr. Helena Kovacs (Research Lead)",
+      "David Lee"
     ]
   }
 ]
 ```
 
-The command reads the whole file into one string, then parses it. A document larger than Node's maximum string length cannot be loaded this way.
+## Report
+
+Each page is a header followed by its unique authors. The labeled page author is first. Chat participants from `class="author"` follow, with a Facebook id left off the name.
+
+```text
+Page Number: 1
+Author: Dr. Helena Kovacs (Research Lead)
+Author: David Lee
+Author: ليلى محمد
+
+Page Number: 2
+Author: Marcus Chen-Williams (Senior Engineer)
+Author: David Lee
+```
+
+A page with no authors is still written, as a header with no `Author:` lines. The same person can appear again on a later page.
 
 ## How a document is read
 
-`parsePages` parses the HTML into a document and walks every element in order.
+`parseFile` streams the HTML. A page starts at a marker and continues until the next one. Text before the first marker is ignored.
 
-1. A page marker opens a new page. Anything after it belongs to that page until the next marker. Text before the first marker is ignored, so a `<meta name="author">` in the document head is not copied onto page 1.
-2. On the current page, each element's own text is scanned for `Author:` lines. A `<br>` is treated as a line break, so two authors in one element are both seen.
-3. If an element has no `Author:` line, it can still contribute an author through the semantic markup below. The walk does not descend into that element, so a nested name is not counted twice.
-4. Each accepted author is recorded on the open page. `formatPages` prints the page number and those labels.
-
-Repeated page numbers stay as separate sections, in the order they appear. A page with no authors is still printed, as a header with no `Author:` lines.
-
-## Page markers
-
-A marker is a `div` whose class list contains both `t` and `i`. Extra classes are fine, and `class="i t"` is the same as `class="t i"`. The element's full text must be one of:
+1. A `div` with both classes `t` and `i` opens a page when its text is a page label. Class order does not matter, and extra classes are fine.
+2. On that page, `Author:` lines and an `Author` field are recorded.
+3. Elements with `class="author"`, `class="byline"`, `rel="author"`, `itemprop="author"`, or `<meta name="author">` are recorded too.
+4. Names are compared with case and extra spaces ignored. The first spelling and role are kept.
 
 ```html
 <div class="t i">Page Number: 1</div>
 <div class="t i">Page 13</div>
+<div class="t i">Page <div></div>14</div>
 ```
 
-The number may have a trailing period (`Page 13.`). A `div` with only class `t`, or the words `Page 10` outside a `div.t.i`, does not start a page.
+The number may have a trailing period (`Page 13.`). A label split by a blank element or a line break still counts. A `div` with only class `t`, or the words `Page 10` outside a `div.t.i`, does not start a page. The same page number later in the file starts another section.
 
-## Author lines
+## Authors
 
-An author line is text that begins with `Author:` followed by a name. An optional role sits in parentheses at the end:
+An author line begins with `Author:` and a name. An optional role sits in parentheses. `Co-Author:` and `Authors:` do not match.
 
 ```html
 <div class="t">Author: Sarah Johnson (Machine Learning Engineer)</div>
 <div class="t">Author: Marcus Lee</div>
 ```
 
-Two author lines may share one element when they are separated by a newline. `Co-Author:` and `Authors:` do not match, because the line must start with the singular label `Author:`.
+A field with the label `Author` is the same kind of entry. The name is the text that follows the label:
 
-Whitespace is collapsed, including non-breaking spaces, and a leading `By ` is removed.
+```html
+<div class="t i">Author<div class="m"><div>Dr. Helena Kovacs (Research Lead)</div></div>
+```
 
-## Uniqueness
+Some exports insert the page number immediately before the surname, as in `Helena 1Kovacs` on page 1 or `Carlos 10Mendoza` on page 10. That number is removed when it matches the page, so the name is `Helena Kovacs` or `Carlos Mendoza`. The role stays.
 
-Comparison is by name only, after whitespace is collapsed and case is ignored. The role is not part of the identity.
+Whitespace is collapsed, including non-breaking spaces, and a leading `By ` is removed. Two author lines may share one element when a newline or `<br>` separates them. A value such as `Ada Lovelace and Grace Hopper` is split on `and` or `&`.
 
-- The same line printed twice on one page is listed once.
-- `Sarah Johnson`, `Sarah   Johnson`, and `sarah johnson` are one person. The first spelling is the one that is printed.
-- `Daniel Kim (Product Manager)` followed by `Daniel Kim (Engineering Manager)` is one person. The first role is kept.
-- The same person on a later page is listed again. Uniqueness does not cross pages.
+`class="author"` text like `David Lee (Facebook: 062239831674842)` is stored as `David Lee`. A different Facebook id does not make a second person. Job roles in parentheses are kept. Timestamps, and the field labels `Body`, `Sent`, `Page`, and `Author`, are not names.
 
-## Semantic markup
-
-An element can also name a person with:
-
-- `itemprop="author"`, using a nested `itemprop="name"` when one is present
-- `rel="author"`
-- class `author` or `byline`
-- `<meta name="author" content="...">` or `<meta itemprop="author" content="...">`
-
-For this markup, the recorded value is the element text. A value such as `Ada Lovelace and Grace Hopper` is split on `and` or `&`. A parenthetical role is stripped only from `Author:` lines, not from this markup. `Author:` lines take priority when both appear on the same element.
+The same name on one page is listed once. `Sarah Johnson`, `Sarah   Johnson`, and `sarah johnson` are one person. `Daniel Kim (Product Manager)` followed by `Daniel Kim (Engineering Manager)` keeps the first role.
 
 ## Use it from JavaScript
 
-Running `parsehtml.js` directly reads an HTML path and prints the report. Importing it does not read a file.
+Importing `parsehtml.js` does not read a file or write a report. `parseFile` streams a path. `parsePages` parses a string and throws a `TypeError` for anything else. Both return `{ page: number, authors: string[] }[]`. `formatPages` turns that array into the text report.
 
 ```js
-import { readFile } from "node:fs/promises";
-import { formatPages, parsePages } from "./parsehtml.js";
+import { formatPages, parseFile } from "./parsehtml.js";
+import { writeFile } from "node:fs/promises";
 
-const html = await readFile("document.html", "utf8");
-const pages = parsePages(html);
-console.log(formatPages(pages));
+const pages = await parseFile("huge_chat_export.html/huge_chat_export.html");
+await writeFile("huge_chat_export.txt", formatPages(pages) + "\n");
 ```
-
-`parsePages` returns `{ page: number, authors: string[] }[]`. `formatPages` turns that array into the text report. `parsePages` throws a `TypeError` if it is given anything other than a string.

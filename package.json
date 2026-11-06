@@ -16,6 +16,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "linkedom": "^0.18.12"
+    "htmlparser2": "^10.1.0"
   }
 }

@@ -1,0 +1,256 @@
+Page Number: 1
+Author: Dr. Helena Kovacs (Research Lead)
+Author: David Lee
+Author: ليلى محمد
+Author: Laura White
+Author: Omar Khan
+Author: نور السويج
+Author: Jessica Taylor
+Author: Sophia Martinez
+Author: أحمد السالم
+Author: سارة الزهراني
+Author: Sarah Johnson
+Author: James Wilson
+Author: نورة الحربي
+Author: فادي الحمادي
+Author: يوسف القحطاني
+
+Page Number: 2
+Author: Marcus Chen-Williams (Senior Engineer)
+Author: David Lee
+Author: يوسف القحطاني
+Author: Sarah Johnson
+Author: ليلى محمد
+Author: Laura White
+Author: أحمد السالم
+Author: فادي الحمادي
+Author: نورة الحربي
+Author: James Wilson
+Author: Jessica Taylor
+Author: خالد العمري
+Author: سارة الزهراني
+Author: Omar Khan
+Author: Sophia Martinez
+
+Page Number: 3
+Author: Aisha Patel (Product Manager)
+Author: ليلى محمد
+Author: David Lee
+Author: Sarah Johnson
+Author: James Wilson
+Author: Sophia Martinez
+Author: Omar Khan
+Author: Olivia Moore
+Author: فادي الحمادي
+Author: نورة الحربي
+Author: Laura White
+Author: يوسف القحطاني
+Author: أحمد السالم
+Author: سارة الزهراني
+Author: Jessica Taylor
+
+Page Number: 4
+Author: Björn Eriksson (UX Designer)
+Author: ليلى محمد
+Author: Omar Khan
+Author: Sophia Martinez
+Author: فادي الحمادي
+Author: نورة الحربي
+Author: Michael Brown
+Author: Laura White
+Author: David Lee
+Author: Jessica Taylor
+Author: يوسف القحطاني
+Author: James Wilson
+Author: سارة الزهراني
+Author: Sarah Johnson
+Author: أحمد السالم
+
+Page Number: 5
+Author: Fatima Al-Rashid (Data Scientist)
+Author: ليلى محمد
+Author: David Lee
+Author: James Wilson
+Author: Laura White
+Author: Sarah Johnson
+Author: Jessica Taylor
+Author: فاطمة عبد الله
+Author: يوسف القحطاني
+Author: Omar Khan
+Author: أحمد السالم
+Author: سارة الزهراني
+Author: فادي الحمادي
+Author: Sophia Martinez
+Author: نورة الحربي
+
+Page Number: 6
+Author: Kenji Tanaka (Backend Developer)
+Author: فاطمة عبد الله
+Author: David Lee
+Author: Omar Khan
+Author: نورة الحربي
+Author: Sarah Johnson
+Author: Jessica Taylor
+Author: Laura White
+Author: James Wilson
+Author: Sophia Martinez
+Author: فادي الحمادي
+Author: ليلى محمد
+Author: أحمد السالم
+Author: رنا العتيبي
+Author: سارة الزهراني
+Author: يوسف القحطاني
+
+Page Number: 7
+Author: Isabella Santos (QA Lead)
+Author: Ethan Davis
+Author: Sarah Johnson
+Author: David Lee
+Author: Jessica Taylor
+Author: أحمد السالم
+Author: يوسف القحطاني
+Author: نورة الحربي
+Author: ليلى محمد
+Author: Sophia Martinez
+Author: Omar Khan
+Author: Laura White
+Author: James Wilson
+Author: سارة الزهراني
+Author: فادي الحمادي
+
+Page Number: 8
+Author: Dmitri Volkov (DevOps Engineer)
+Author: Ethan Davis
+Author: Sarah Johnson
+Author: James Wilson
+Author: Omar Khan
+Author: سارة الزهراني
+Author: Sophia Martinez
+Author: نورة الحربي
+Author: أحمد السالم
+Author: Jessica Taylor
+Author: يوسف القحطاني
+Author: ليلى محمد
+Author: David Lee
+Author: محمد الغامدي
+Author: فادي الحمادي
+Author: Laura White
+
+Page Number: 9
+Author: Ngozi Okafor (Frontend Developer)
+Author: نورة الحربي
+Author: David Lee
+Author: Sarah Johnson
+Author: James Wilson
+Author: Sophia Martinez
+Author: ليلى محمد
+Author: أحمد السالم
+Author: Laura White
+Author: ليلى السلام
+Author: Omar Khan
+Author: سارة الزهراني
+Author: Jessica Taylor
+Author: يوسف القحطاني
+Author: فادي الحمادي
+
+Page Number: 10
+Author: Carlos Mendoza (Security Analyst)
+Author: Omar Khan
+Author: Sarah Johnson
+Author: سارة الزهراني
+Author: Jessica Taylor
+Author: Laura White
+Author: Sophia Martinez
+Author: يوسف القحطاني
+Author: ليلى محمد
+Author: James Wilson
+Author: أحمد السالم
+Author: فادي الحمادي
+Author: David Lee
+Author: نورة الحربي
+Author: Emily Chen
+
+Page Number: 11
+Author: Priya Sharma (Machine Learning Engineer)
+Author: نورة الحربي
+Author: David Lee
+Author: Sophia Martinez
+Author: سارة الزهراني
+Author: Laura White
+Author: Sarah Johnson
+Author: فادي الحمادي
+Author: James Wilson
+Author: ليلى محمد
+Author: مريم سعيد
+Author: Omar Khan
+Author: أحمد السالم
+Author: يوسف القحطاني
+Author: Jessica Taylor
+
+Page Number: 12
+Author: Lars Andersen (Infrastructure Lead)
+Author: Sarah Johnson
+Author: فادي الحمادي
+Author: James Wilson
+Author: Sophia Martinez
+Author: Omar Khan
+Author: Laura White
+Author: ليلى محمد
+Author: Jessica Taylor
+Author: David Lee
+Author: أحمد السالم
+Author: سارة الزهراني
+Author: عبدالله المطيري
+Author: نورة الحربي
+Author: يوسف القحطاني
+
+Page Number: 13
+Author: Mei-Lin Wu (Technical Writer)
+Author: Laura White
+Author: Omar Khan
+Author: فادي الحمادي
+Author: هند الشمري
+Author: Sarah Johnson
+Author: David Lee
+Author: Sophia Martinez
+Author: نورة الحربي
+Author: James Wilson
+Author: أحمد السالم
+Author: Jessica Taylor
+Author: ليلى محمد
+Author: يوسف القحطاني
+Author: سارة الزهراني
+
+Page Number: 14
+Author: Ahmed Hassan (Solutions Architect)
+Author: Sarah Johnson
+Author: Omar Khan
+Author: ليلى محمد
+Author: أحمد السالم
+Author: David Lee
+Author: يوسف القحطاني
+Author: علي الدعيع
+Author: Jessica Taylor
+Author: James Wilson
+Author: سارة الزهراني
+Author: Sophia Martinez
+Author: نورة الحربي
+Author: Laura White
+Author: فادي الحمادي
+
+Page Number: 15
+Author: Sofia Bergström (Project Manager)
+Author: Sarah Johnson
+Author: Sophia Martinez
+Author: Laura White
+Author: ليلى محمد
+Author: Omar Khan
+Author: نورة الحربي
+Author: يوسف القحطاني
+Author: Liam Anderson
+Author: James Wilson
+Author: Jessica Taylor
+Author: فادي الحمادي
+Author: David Lee
+Author: أحمد السالم
+Author: سارة الزهراني
